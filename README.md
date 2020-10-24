@@ -45,15 +45,27 @@ insert into employee_payroll (name, salary, start) values
 select * from employee_payroll;
 ```
 ## UC5 -Retrieve employee data for particular name or joined date
-## select employee for name 'Dev'
+### select employee for name 'Dev'
 ```
 SELECT salary FROM employee_payroll
     WHERE name ='Dev';
 ```
-## select employee who has joined after '2019-06-18'
+### select employee who has joined after '2019-06-18'
 ```
 SELECT name, start, salary FROM employee_payroll
      where start between cast('2019-06-18' as date) and date(now());
 ```
+## UC6 - Alter table and update table
+### Alter table to add gender as field
+```
+alter table employee_payroll add gender char(1) after name;
+```
+### Update table for field gender
+```
+update employee_payroll set gender='M' where name='Dev' or name='Manoj';
+update employee_payroll set gender='F' where name='Kavya';
+```
+
+
 
 
