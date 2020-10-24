@@ -35,4 +35,13 @@ insert into employee_payroll (name, salary, start) values
     ('Dev', 5000000.0, '2020-05-08'),
     ('Kavya', 74000.6, '2013-08-15');
 ```
+## UC4 - Retrieve all data from payroll_service database
+### select current database
+```
+  select database();
+```
+### Retrieve all the employee data from employee_payroll table
+```
+select * from employee_payroll;
+```
 
