@@ -82,5 +82,24 @@ select gender, sum(salary), count(gender), avg(salary), min(salary), max(salary)
 ```
  desc employee_payroll;
 ```
+## UC9 - Extend table to have Basic_Pay, deductions, taxable pay, tax and net pay
+```
+ alter table employee_payroll
+    -> add column deductions double not null after Basic_Pay,
+    -> add column taxable_pay double not null after deductions,
+    -> add column income_tax double not null after taxable_pay,
+    -> add column net_pay double not null after income_tax;
+```
+## UC10.1 Adding Terisa department as sales and marketing by doing double entry
+### Entry for department 'Sales'
+```
+ insert into employee_payroll values
+    -> (5, 'Terisa', 'F', 3000000.00, 400000.00, 2600000.00, 400000.00, 2200000.00, '2019-08-13', 9162458745, 'HYD', 'Sales');
+```
+### Entry for department 'Marketing'
+```
+ insert into employee_payroll values
+    -> (4, 'Terisa', 'F', 3000000.00, 400000.00, 2600000.00, 400000.00, 2200000.00, '2019-08-13', 9162458745, 'HYD', 'Marketing');
+```
 
 
