@@ -148,5 +148,34 @@ select gender, sum(salary), count(gender), avg(salary), min(salary), max(salary)
     -> foreign key (emp_id) references employee(emp_id)
     -> );
 ```
+## UC12 - Ensure All retrieve queries done before
+### Adding data into table comapny
+```
+ insert into company values
+    -> (1, 'BridgeLab'),
+    -> (2, 'CapGemini'),
+    -> (3, 'Dee-Shaw');
+```
+### Adding data into table Department
+```
+ insert into department values
+    -> (51, 'Sales'),
+    -> (52, 'Marketing'),
+    -> (53, 'Production');
+```
+### Adding data into table Employee
+```
+ insert into employee values
+    -> (101, 1, 51, 'Dev', 'Kumar', 'HYD', 7870752948,  'M'),
+    -> (102, 2, 52, 'Manoj', 'Harale', 'CHN', 829469847, 'M'),
+    -> (103, 3, 53, 'Avantika', 'Pandey', 'HYD', 787456974, 'F');
+```
+### Adding data into table payroll
+```
+ insert into payroll values
+    -> (101, 1000000.00, 100000.00, 900000.00, 100000.00, 800000.0),
+    -> (102, 2000000.00, 150000.00, 1850000.00, 150000.00, 1700000.0),
+    -> (103, 3000000.00, 300000.00, 2700000.00, 300000.00, 2400000.0);
+```
 
 
