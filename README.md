@@ -102,4 +102,51 @@ select gender, sum(salary), count(gender), avg(salary), min(salary), max(salary)
     -> (4, 'Terisa', 'F', 3000000.00, 400000.00, 2600000.00, 400000.00, 2200000.00, '2019-08-13', 9162458745, 'HYD', 'Marketing');
 ```
 
+## UC11 - implementing ER diagram for employee_payroll database
+### Adding table company
+```
+ create table Company
+    -> (
+    -> company_id int not null,
+    -> company_name varchar(50) not null,
+    -> primary key(company_id)
+    -> );
+```
+### creating table Department
+```
+ create table Department (
+    -> dept_id int not null,
+    -> dept_name varchar(50) not null,
+    -> primary key(dept_id)
+    -> );
+```
+### creating table employee
+```
+ create table employee(
+    -> emp_id int unsigned not null auto_increment primary key,
+    -> company_id int not null,
+    -> dept_id int not null,
+    -> firstName varchar(50) not null,
+    -> lastName varchar(50) not null,
+    -> address varchar(50) not null,
+    -> phoneNo long,
+    -> gender char(1),
+    -> foreign key(company_id) references company(company_id),
+    -> foreign key(dept_id) references department(dept_id)
+    -> );
+```
+### creating table payroll
+```
+ create table payroll
+    -> (
+    -> emp_id int unsigned not null auto_increment primary key,
+    -> basic_pay double not null,
+    -> deductions double not null,
+    -> taxable_income double not null,
+    -> income_tax double not null,
+    -> net_pay double not null,
+    -> foreign key (emp_id) references employee(emp_id)
+    -> );
+```
+
 
