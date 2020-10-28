@@ -71,7 +71,16 @@ update employee_payroll set gender='F' where name='Kavya';
 ```
 select gender, sum(salary), count(gender), avg(salary), min(salary), max(salary) from employee_payroll group by gender;
 ```
-
-
+## UC8 - Store extra employee info like phone, department and Address
+```
+ alter table employee_payroll
+    -> add column phoneNo long,
+    -> add column Address varchar(150) default 'HYD',
+    -> add column Department varchar(50) not null;
+```
+### See the table, employee_payroll
+```
+ desc employee_payroll;
+```
 
 
