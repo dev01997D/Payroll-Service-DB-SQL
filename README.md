@@ -60,7 +60,7 @@ SELECT name, start, salary FROM employee_payroll
 ```
 alter table employee_payroll add gender char(1) after name;
 ```
-### Update table for field gender
+### update table for field gender
 ```
 update employee_payroll set gender='M' where name='Dev' or name='Manoj';
 update employee_payroll set gender='F' where name='Kavya';
@@ -115,10 +115,10 @@ select gender, sum(salary), count(gender), avg(salary), min(salary), max(salary)
 ### creating table Department
 ```
  create table Department (
-    -> dept_id int not null,
-    -> dept_name varchar(50) not null,
-    -> primary key(dept_id)
-    -> );
+     dept_id int not null,
+     dept_name varchar(50) not null,
+     primary key(dept_id)
+     );
 ```
 ### creating table employee
 ```
@@ -148,6 +148,17 @@ select gender, sum(salary), count(gender), avg(salary), min(salary), max(salary)
     -> foreign key (emp_id) references employee(emp_id)
     -> );
 ```
+### Creating employee_department table
+```
+create table employee_department
+(
+emp_id int unsigned not null,
+dept_id int not null,
+foreign key (emp_id)  references employee (emp_id),
+foreign key (dept_id) references department (dept_id)
+);
+```
+
 ## UC12 - Ensure All retrieve queries done before
 ### Adding data into table comapny
 ```
@@ -177,5 +188,40 @@ select gender, sum(salary), count(gender), avg(salary), min(salary), max(salary)
     -> (102, 2000000.00, 150000.00, 1850000.00, 150000.00, 1700000.0),
     -> (103, 3000000.00, 300000.00, 2700000.00, 300000.00, 2400000.0);
 ```
-
-
+### Adding data to employee_department table
+```
+ insert into employee_department values
+    -> (101,51),
+    -> (101,52),
+    -> (102,52),
+    -> (103,52),
+    -> (103,53);
+```
+## UC12- 
+### Altering payroll table to add start date and insert values
+```
+ALTER TABLE payroll ADD start DATE
+update  payroll set start = '2019-10-12' where emp_id=102;
+update  payroll set start = '2018-1-15' where emp_id=101;
+update payroll set start = '2018-5-9' where emp_id=103;
+SELECT * from payroll where start between CAST('2019-1-1' AS DATE) and DATE(NOW());
+```
+### Sum of total salary according to gender
+```
+select e.gender, sum(p.net_pay) as TOTAL_SALARY from employee e left join payroll p using (emp_id) group by e.gender;
+```
+### Average salary according to gender
+```
+select e.gender, AVG(p.net_pay) as AVG_SALARY from employee e left join payroll p using (emp_id) group by e.gender;
+```
+### Minimum salary according to gender
+```
+select e.gender, MIN(p.net_pay) as MIN_SALARY from employee e left join payroll p using (emp_id) group by e.gender;
+```
+### Maximum salary according to gender
+```
+select e.gender, MAX(p.net_pay) MAX_SALARY from employee e left join payroll p using (emp_id) group by e.gender;
+```
+### Count of employees according to gender
+```
+select e.gender, COUNT(p.net_pay)  as COUNT from employee e left join payroll p using (emp_id) group by e.gender;
